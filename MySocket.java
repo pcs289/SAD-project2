@@ -7,27 +7,19 @@ class MySocket{
 	Socket s;
 
 	//Socket I/O
-	PrintWriter pws;
-	BufferedReader brs;
+	PrintWriter out;
+	BufferedReader in;
 
-	//Client I/O
-	PrintWriter pwc;
-	BufferedReader brc;
 
-	public MySocket(){
+	public MySocket(Socket s){
 		try{
-			this.s = new Socket();
-
-			pws = new PrintWriter(this.s.getOutputStream(), true);
-			brs = new BufferedReader(new InputStreamReader(this.s.getInputStream()));
-
-			pwc = new PrintWriter(System.out, true);
-			brc = new BufferedReader(new InputStreamReader(System.in));
+			this.s = s;
+			this.out = new PrintWriter(s.getOutputStream(), true);
+			this.in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
 		}catch(Exception e){
 			System.out.println(e);
 		}
-
 		
 	}
 }

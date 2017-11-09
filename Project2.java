@@ -6,25 +6,28 @@ class Project2{
 	public static void main(String[] args){
 		// Client: -c IP port
 		// Server: -s port
-		String type = args[0];
-		String ip = "0.0.0.0";
-		String port = "2345";
-
-		if(type.equals("-c")){
-			System.out.println("Client");
-			ip = args[1];
-			port = args[2];
-
-		}else if(type.equals("-s")){
-			System.out.println("Server");
-			
-
-			while(){
-
-			}
-			port = args[1];
+		if(args.length == 0 || args.length > 3){
+			System.out.println("Usage: \r\n Server: java Project2 -s Port\r\n  Client: java Project2 -c ipAddress Port\r\n");
 		}else{
-			System.out.print("Usage: \r\n Server: java Project2 -s Port\r\n  Client: java Project2 -c ipAddress Port\r\n");
+			String type = args[0];
+
+			if(type.equals("-c") && args.length == 3){
+				System.out.println("Client");
+				ip = args[1];
+				port = args[2];
+				System.out.println("Trying to connect at IP " + ip + " at port " + port);
+
+			}else if(type.equals("-s") && args.length == 2){
+				System.out.println("Server");
+				port = args[1];
+				System.out.println("Waiting for connection at IP " + ip + " at port " + port);
+				while(true){
+					
+				}
+				
+			}else{
+				System.out.println("Usage: \r\n Server: java Project2 -s Port\r\n  Client: java Project2 -c ipAddress Port\r\n");
+			}
 		}	
 	}
 }
