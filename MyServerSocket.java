@@ -10,9 +10,9 @@ class MyServerSocket{
 	PrintWriter out;
 	BufferedReader in;
 
-	public MyServerSocket(){
+	public MyServerSocket(int port){
 		try{
-			this.s = new ServerSocket();
+			this.s = new ServerSocket(port);
 			this.out = new PrintWriter(s.getOutputStream(), true);
 			this.in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
@@ -24,6 +24,14 @@ class MyServerSocket{
 	public MySocket accept() throws IOException{
 		Socket s = this.s.accept();
 		return new MySocket(s);
+	}
+
+	public InputStream getInputStream(){
+		return this.s.getInputStream();
+	}
+
+	public OutputStream getOutputStream(){
+		return this.s.getOutputStream();
 	}
 
 
