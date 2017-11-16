@@ -4,9 +4,11 @@ import java.net.*;
 
 public class Service implements Runnable{
 	MySocket ms;
+    ConcurrentHashMap llista<String, MySocket>;
 
-    public Service(MySocket s) {
+    public Service(MySocket s, ConcurrentHashMap llista) {
         this.ms = s;
+        this.llista = llista;
     }
 
     @Override
