@@ -14,7 +14,7 @@ public class Server{
                 System.out.println("Esperant connexions...");
                 MySocket ms = mss.accept();
                 llista.put(ms.getNick(),ms);
-                new Thread(new Service(ms)).start();
+                new Thread(new Service(ms), llista).start();
             }
         } catch (Exception e) {
             e.printStackTrace();
