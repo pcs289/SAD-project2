@@ -7,8 +7,6 @@ class Chat{
 		// Client: -c IP port
 		// Server: -s port
 
-		System.out.println(args.length);
-
 		if(args.length == 0 || args.length > 4){
 			System.out.println("Usage:\r\nServer: java Chat -s Port\r\nClient: java Chat -c ipAddress Port Nickname\r\n");
 		}else{

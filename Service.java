@@ -22,7 +22,8 @@ public class Service implements Runnable{
                 if (line == null) {
                     break;
                 }
-                out.println("\\e[1;31m"+nick + ">> \\e[0m" + line);
+                // out.println("\\e[1;31m"+nick + ">> \\e[0m" + line);
+                out.println(nick + "-> "+ line);
             }
         } catch (Exception e) {
             e.printStackTrace();
