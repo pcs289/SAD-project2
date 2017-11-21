@@ -1,20 +1,21 @@
 import java.lang.*;
 import java.io.*;
 import java.net.*;
+import java.util.concurrent.*;
 
 public class Server{
 
-    ConcurentHashMap llista<String, MySocket>;
+    ConcurrentHashMap<String, MySocket> llista;
 
 	public Server(int port){
         try {
-
+            this.llista = new ConcurrentHashMap<String, MySocket>();
             MyServerSocket mss = new MyServerSocket(port);
             while (true) {
-                System.out.println("Esperant connexions...");
                 MySocket ms = mss.accept();
                 llista.put(ms.getNick(),ms);
-                new Thread(new Service(ms), llista).start();
+                System.out.println("Client with nickname: "+ ms.getNick() +" connection started");
+                new Thread(new Service(ms, ms.getNick())).start();
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -5,7 +5,6 @@ import java.net.*;
 class MySocket{
 	
 	Socket s;
-
 	//Socket I/O
 	PrintWriter out;
 	BufferedReader in;
@@ -13,6 +12,14 @@ class MySocket{
 
 	public MySocket(Socket s){
 		this.s = s;
+		this.nick = "Paulino";
+		// InetAddress ip;
+		// try{
+		// 	ip = InetAddress.getLocalHost();
+		// }catch(Exception e){
+		// 	e.printStackTrace();
+		// }
+		// MySocket(ip, 12345, "Rand");
 	}
 
 	public MySocket(InetAddress ip, int port, String nick){
@@ -28,15 +35,46 @@ class MySocket{
 		
 	}
 
+	public void connect(){
+		try{
+			this.s.connect(new InetSocketAddress(this.s.getInetAddress(), this.s.getPort()));
+		}catch(Exception e){
+			e.printStackTrace();
+
+		}
+	}
+
+	public void close(){
+		try{
+			this.s.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
 	public String getNick(){
 		return this.nick;
 	}
 
 	public InputStream getInputStream(){
-		return this.s.getInputStream();
+		InputStream in = null;
+		try{
+			in = this.s.getInputStream();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			return in;
+		}
 	}
 
 	public OutputStream getOutputStream(){
-		return this.s.getOutputStream();
+		OutputStream out = null;
+		try{
+			out = this.s.getOutputStream();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			return out;
+		}
 	}
 }

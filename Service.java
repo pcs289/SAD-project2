@@ -4,11 +4,11 @@ import java.net.*;
 
 public class Service implements Runnable{
 	MySocket ms;
-    ConcurrentHashMap llista<String, MySocket>;
+    String nick;
 
-    public Service(MySocket s, ConcurrentHashMap llista) {
+    public Service(MySocket s, String nick) {
         this.ms = s;
-        this.llista = llista;
+        this.nick = nick;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Service implements Runnable{
                 if (line == null) {
                     break;
                 }
-                out.println(line);
+                out.println("\\e[1;31m"+nick + ">> \\e[0m" + line);
             }
         } catch (Exception e) {
             e.printStackTrace();

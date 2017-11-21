@@ -12,6 +12,7 @@ public class Client implements Runnable{
         try{
             this.ms = new MySocket(ip, port, nick);
             System.out.println("Connexio establerta");
+            //this.ms.connect();
             in = new BufferedReader(new InputStreamReader(this.ms.getInputStream()));
             out = new PrintWriter(this.ms.getOutputStream(),true);
             br_ky = new BufferedReader(new InputStreamReader(System.in));

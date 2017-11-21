@@ -13,26 +13,23 @@ class MyServerSocket{
 	public MyServerSocket(int port){
 		try{
 			this.s = new ServerSocket(port);
-			this.out = new PrintWriter(s.getOutputStream(), true);
-			this.in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-
 		}catch(Exception e){
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	}
 
-	public MySocket accept() throws IOException{
-		Socket s = this.s.accept();
-		return new MySocket(s);
+	public MySocket accept(){
+		MySocket sock = null;
+		try{
+			Socket sc = this.s.accept();
+			this.out = new PrintWriter(sc.getOutputStream(), true);
+			this.in = new BufferedReader(new InputStreamReader(sc.getInputStream()));
+			sock = new MySocket(sc);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return sock;
 	}
-
-	public InputStream getInputStream(){
-		return this.s.getInputStream();
-	}
-
-	public OutputStream getOutputStream(){
-		return this.s.getOutputStream();
-	}
-
 
 }
