@@ -8,11 +8,9 @@ class MySocket{
 	//Socket I/O
 	PrintWriter out;
 	BufferedReader in;
-	String nick;
 
 	public MySocket(Socket s){
 		this.s = s;
-		this.nick = "Paulino";
 		// InetAddress ip;
 		// try{
 		// 	ip = InetAddress.getLocalHost();
@@ -22,10 +20,9 @@ class MySocket{
 		// MySocket(ip, 12345, "Rand");
 	}
 
-	public MySocket(InetAddress ip, int port, String nick){
+	public MySocket(InetAddress ip, int port){
 		try{
 			this.s = new Socket(ip, port);
-			this.nick = nick;
 			this.out = new PrintWriter(s.getOutputStream(), true);
 			this.in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
@@ -50,10 +47,6 @@ class MySocket{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	}
-
-	public String getNick(){
-		return this.nick;
 	}
 
 	public InputStream getInputStream(){

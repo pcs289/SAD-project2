@@ -8,9 +8,9 @@ public class Client implements Runnable{
 	BufferedReader in, br_ky;
     PrintWriter out;
     
-    public Client(InetAddress ip, int port, String nick){
+    public Client(InetAddress ip, int port){
         try{
-            this.ms = new MySocket(ip, port, nick);
+            this.ms = new MySocket(ip, port);
             System.out.println("Connexio establerta");
             //this.ms.connect();
             in = new BufferedReader(new InputStreamReader(this.ms.getInputStream()));

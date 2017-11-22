@@ -13,13 +13,18 @@ public class Server{
             MyServerSocket mss = new MyServerSocket(port);
             while (true) {
                 MySocket ms = mss.accept();
-                llista.put(ms.getNick(),ms);
-                System.out.println("Client with nickname: "+ ms.getNick() +" connection started");
-                new Thread(new Service(ms, ms.getNick())).start();
+                PrintWriter outms = new PrintWriter(ms.getOutputStream(), true);
+                BufferedReader inms = new BufferedReader(new InputStreamReader(ms.getInputStream()));
+                outms.println("Quin nickname vols tenir?");
+                String nick = inms.readLine();
+                llista.put(nick,ms);
+                System.out.println("Client with nickname: "+ nick +" connection started");
+                new Thread(new Service(ms, nick)).start();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
 }
 
