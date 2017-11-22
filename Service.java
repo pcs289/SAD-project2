@@ -28,13 +28,11 @@ public class Service implements Runnable{
                 if (line == null) {
                     break;
                 }
-
                 Set<String> keySet = this.serv.llista.keySet();
-                System.out.println(keySet.toString());
                 for (String nick : keySet){
                     if(!nick.equals(currentNick)){
                         PrintWriter outbroadcast = new PrintWriter(this.serv.llista.get(nick).getOutputStream(), true);
-                        outbroadcast.println(RED + nick + "-> " + RESET + line);
+                        outbroadcast.println(RED + currentNick + "-> " + RESET + line);
                     }else {
                         out.println(YELLOW + currentNick + "-> " + RESET + line);
                     }
