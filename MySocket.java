@@ -11,13 +11,6 @@ class MySocket{
 
 	public MySocket(Socket s){
 		this.s = s;
-		// InetAddress ip;
-		// try{
-		// 	ip = InetAddress.getLocalHost();
-		// }catch(Exception e){
-		// 	e.printStackTrace();
-		// }
-		// MySocket(ip, 12345, "Rand");
 	}
 
 	public MySocket(InetAddress ip, int port){
@@ -30,15 +23,6 @@ class MySocket{
 			System.out.println(e);
 		}
 		
-	}
-
-	public void connect(){
-		try{
-			this.s.connect(new InetSocketAddress(this.s.getInetAddress(), this.s.getPort()));
-		}catch(Exception e){
-			e.printStackTrace();
-
-		}
 	}
 
 	public void close(){

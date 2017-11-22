@@ -5,6 +5,8 @@ import java.net.*;
 public class Service implements Runnable{
 	MySocket ms;
     String nick;
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\u001B[31m";
 
     public Service(MySocket s, String nick) {
         this.ms = s;
@@ -23,7 +25,7 @@ public class Service implements Runnable{
                     break;
                 }
                 // out.println("\\e[1;31m"+nick + ">> \\e[0m" + line);
-                out.println(nick + "-> "+ line);
+                out.println(RED + nick + "-> " + RESET + line);
             }
         } catch (Exception e) {
             e.printStackTrace();
