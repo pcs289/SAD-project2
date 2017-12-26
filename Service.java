@@ -10,6 +10,7 @@ public class Service implements Runnable{
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
     public static final String YELLOW = "\u001B[33m";
+    public static final String GREEN = "\u001B[32m";
 
     public Service(MySocket s, String nick, Server serv) {
         this.ms = s;
@@ -25,10 +26,17 @@ public class Service implements Runnable{
 
             while (true) {
                 String line = in.readLine();
-                if (line == null) {
-                    break;
-                }
                 Set<String> keySet = this.serv.llista.keySet();
+                if (line == null) {
+                    this.serv.llista.remove(this.currentNick);
+                    for (String nick : keySet){
+                   		if(!nick.equals(this.currentNick)){
+                        	PrintWriter outbroadcast = new PrintWriter(this.serv.llista.get(nick).getOutputStream(), true);
+                        	outbroadcast.println(GREEN + "Client with nickname: " + RED + currentNick + GREEN + " connection finished" + RESET);
+                    	}
+                	}
+            	    break;
+                }
                 for (String nick : keySet){
                     if(!nick.equals(currentNick)){
                         PrintWriter outbroadcast = new PrintWriter(this.serv.llista.get(nick).getOutputStream(), true);

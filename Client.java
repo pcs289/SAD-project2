@@ -12,7 +12,6 @@ public class Client implements Runnable{
         try{
             this.ms = new MySocket(ip, port);
             System.out.println("Connexio establerta");
-            //this.ms.connect();
             in = new BufferedReader(new InputStreamReader(this.ms.getInputStream()));
             out = new PrintWriter(this.ms.getOutputStream(),true);
             br_ky = new BufferedReader(new InputStreamReader(System.in));
@@ -34,9 +33,7 @@ public class Client implements Runnable{
 
             this.ms.close();
             
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        }catch(Exception e){}
     }
 
     public void writeToSocket(){
@@ -49,8 +46,6 @@ public class Client implements Runnable{
 
             this.ms.close();
 
-        }catch(Exception e){
-            e.printStackTrace();
-        }        
+        }catch(Exception e){}        
     }
 }	
